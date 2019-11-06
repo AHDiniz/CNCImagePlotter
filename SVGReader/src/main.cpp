@@ -18,9 +18,9 @@
  * Floating-point treatment: round or truncate?
  * 
  * Supported forms:
- * 	-> Lines (end points and thickness)
- * 	-> Rectangles (center, width, height and thickness)
- * 	-> Circles (center, radius and thickness)
+ * 	-> Lines (end points)
+ * 	-> Rectangles (center, width and height)
+ * 	-> Circles (center and radius)
  * 	-> Ellipses
  * 	-> Polyline
  * 	-> Polygon
@@ -38,9 +38,9 @@ static void PrintHelp(void)
 	std::cout << "-h to display this help message" << std::endl << std::endl;
 
 	std::cout << "Supported geometries:" << std::endl;
-	std::cout << "Lines: end points and thickness" << std::endl;
-	std::cout << "Rectangles: center, width, height and border thickness" << std::endl;
-	std::cout << "Circles: center, radius and border thickness" << std::endl;
+	std::cout << "Lines: end points" << std::endl;
+	std::cout << "Rectangles: center, width and height" << std::endl;
+	std::cout << "Circles: center and radius" << std::endl;
 }
 
 int main(int argc, char *argv[])
