@@ -15,42 +15,59 @@ namespace Forms
 		float x, y;
 	};
 
+	struct Form
+	{
+		virtual const std::vector<Point> &Draw(void) = 0;
+	};
+
 	struct Line
 	{
 		Point a, b;
 	};
 
-	struct Rect
+	struct Rect : public Form
 	{
 		Point center;
 		float width, height;
+
+		const std::vector<Point> &Draw(void) override;
 	};
 
-	struct Circle
+	struct Circle : public Form
 	{
 		Point center;
 		float radius;
+
+		const std::vector<Point> &Draw(void) override;
 	};
 
-	struct Ellipse
+	struct Ellipse : public Form
 	{
 		Point center;
 		float width, height;
+
+		const std::vector<Point> &Draw(void) override;
 	};
 
-	struct Polyline
+	struct Polyline : public Form
 	{
 		std::vector<Point> vertices;
+
+		const std::vector<Point> &Draw(void) override;
 	};
 
-	struct Polygon
+	struct Polygon : public Form
 	{
 		std::vector<Point> vertices;
+
+		const std::vector<Point> &Draw(void) override;
 	};
 
-	struct Text
+	struct Text : public Form
 	{
 		const char *text;
 		float fontSize;
+
+		const std::vector<Point> &Draw(void) override;
 	};
 }
