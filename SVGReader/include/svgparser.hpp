@@ -5,5 +5,5 @@
 
 namespace SVG
 {
-	std::vector<Forms::Form> ReadSVGFile();
+	const std::vector<Forms::Form> &ReadSVGFile();
 }

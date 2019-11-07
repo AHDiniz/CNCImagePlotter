@@ -20,9 +20,11 @@ namespace Forms
 		virtual const std::vector<Point> &Draw(void) = 0;
 	};
 
-	struct Line
+	struct Line : public Form
 	{
 		Point a, b;
+
+		const std::vector<Point> &Draw(void) override;
 	};
 
 	struct Rect : public Form
