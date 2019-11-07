@@ -7,7 +7,7 @@
 /**
  * SVG File parser:
  * 
- * Basic usage: plotter -f <<SVG file name>> -p <<arduino serial port (optional)>>
+ * Basic usage: plotter -f <<SVG file name>> -p <<arduino serial port (optional)>> -d <<Width of plot>> <<Height of plot>>
  * 
  * Will need to check if the image can be plotted by the arduino:
  * 	-> File check (existance and correct encoding)
@@ -24,8 +24,13 @@
  * 	-> Ellipses (center, width and height)
  * 	-> Polyline (point sequence)
  * 	-> Polygon (point sequence)
- * 	-> Path ()
- * 	-> Text
+ * 	-> Path (???)
+ * 	-> Text (???)
+ * 
+ * 1 - Read SVG file
+ * 2 - Simplify data
+ * 3 - Print GCode file
+ * 4 - Send GCode file to Arduino
 */
 
 static void PrintHelp(void)
@@ -34,7 +39,8 @@ static void PrintHelp(void)
 
 	std::cout << "Usage:" << std::endl;
 	std::cout << "-f to tell the file location" << std::endl;
-	std::cout << "-p to specify the serial port where the arduino is connected" << std::endl;
+	std::cout << "-p to specify the serial port where the arduino is connected (default is 'Put default here')" << std::endl;
+	std::cout << "-d to specify the dimensions of the plot in milimeters (default is 80 60)" << std::endl;
 	std::cout << "-h to display this help message" << std::endl << std::endl;
 
 	std::cout << "Supported geometries:" << std::endl;
@@ -50,23 +56,65 @@ int main(int argc, char *argv[])
 {
 	Config *config = Config::GetInstance();
 
-	if (argc == 1)
+	for (int i = 1; i < argc;)
 	{
-		PrintHelp();
+		if (strcmp(argv[i], "-h") == 0)
+		{
+			PrintHelp();
+			return EXIT_SUCCESS;
+		}
+		else if (strcmp(argv[i], "-p") == 0)
+		{
+			if (i + 1 >= argc)
+			{
+				std::cout << "Unspecified input. Type 'plotter -h' to get help." << std::endl;
+				return EXIT_SUCCESS;
+			}
+
+			config->SetPort(argv[i + 1]);
+			i += 2;
+		}
+		else if (strcmp(argv[i], "-f") == 0)
+		{
+			if (i + 1 >= argc)
+			{
+				std::cout << "Unspecified input. Type 'plotter -h' to get help." << std::endl;
+				return EXIT_SUCCESS;
+			}
+
+			config->SetFilename(argv[i + 1]);
+			i += 2;
+		}
+		else if (strcmp(argv[i], "-w") == 0)
+		{
+			if (i + 2 >= argc)
+			{
+				std::cout << "Unspecified input. Type 'plotter -h' to get help." << std::endl;
+				return EXIT_SUCCESS;
+			}
+
+			int w = atoi(argv[i + 1]);
+			int h = atoi(argv[i + 2]);
+			i += 3;
+		}
+		else
+		{
+			std::cout << "Unspecified input. Type 'plotter -h' to get help." << std::endl;
+			return EXIT_SUCCESS;
+		}
+	}
+
+	if (config->GetFilename().empty())
+	{
+		std::cout << "Input file not specified. Type 'plotter -h' to get help." << std::endl;
 		return EXIT_SUCCESS;
 	}
-	else if (argc == 2)
-	{
-		if (strcmp(argv[1], "-h") == 0) PrintHelp();
-		else std::cout << "Unspecified inputs. Type \"plotter -h\" to get help." << std::endl;
-		return EXIT_SUCCESS;
-	}
-	else if (argc == 3)
-	{
-		if (strcmp(argv[1], "-h") == 0 || strcmp(argv[2], "-h") == 0) PrintHelp();
-		else if (strcmp(argv[1], "-f")) config->SetFilename(argv[2]);
-		else if (strcmp(argv[1], "-p")) config->SetPort(argv[2]);
-		else std::cout << "Unspecified inputs. Type \"plotter -h\" to get help." << std::endl;
-		return EXIT_SUCCESS;
-	}
+
+	if (config->GetPort().empty())
+		config->SetPort("TODO: Default serial port.");
+
+	if (config->GetWidth() <= 0) config->SetWidth(80);
+	if (config->GetHeight() <= 0) config->SetHeight(60);
+
+	return EXIT_SUCCESS;
 }

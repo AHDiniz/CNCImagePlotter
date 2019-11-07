@@ -4,13 +4,15 @@
 
 /**
  * Geometric forms data definitions
+ * 
+ * ? Maybe treat positions varying from -1 to 1
 */
 
 namespace Forms
 {
 	struct Point
 	{
-		int x, y;
+		float x, y;
 	};
 
 	struct Line
@@ -21,41 +23,34 @@ namespace Forms
 	struct Rect
 	{
 		Point center;
-		int width, height;
+		float width, height;
 	};
 
 	struct Circle
 	{
 		Point center;
-		int radius;
+		float radius;
 	};
 
 	struct Ellipse
 	{
 		Point center;
-		int width, height;
+		float width, height;
 	};
 
 	struct Polyline
 	{
-		std::vector<Point> points;
+		std::vector<Point> vertices;
 	};
 
 	struct Polygon
 	{
-		std::vector<Point> points;
+		std::vector<Point> vertices;
 	};
 
-	/**
-	 * Functions that get a geometric form and transform them in a sequence of points to be drawn
-	 * in a sequence of points to be drawn by the arduino plotter
-	*/
-
-	const std::vector<Point> &Draw(const Line &l);
-	const std::vector<Point> &Draw(const Rect &r);
-	const std::vector<Point> &Draw(const Circle &c);
-	const std::vector<Point> &Draw(const Ellipse &e);
-	const std::vector<Point> &Draw(const Polyline &p);
-	const std::vector<Point> &Draw(const Polygon &p);
-
+	struct Text
+	{
+		const char *text;
+		float fontSize;
+	};
 }

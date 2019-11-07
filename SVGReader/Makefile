@@ -7,3 +7,6 @@ EXE = bin/plotter
 
 all:
 	$(CC) -o $(EXE) $(INC) $(SRC) $(CFLAGS) $(LFLAGS)
+
+run:
+	./$(EXE)
