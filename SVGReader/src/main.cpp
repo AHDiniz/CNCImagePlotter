@@ -21,10 +21,10 @@
  * 	-> Lines (end points)
  * 	-> Rectangles (center, width and height)
  * 	-> Circles (center and radius)
- * 	-> Ellipses
- * 	-> Polyline
- * 	-> Polygon
- * 	-> Path
+ * 	-> Ellipses (center, width and height)
+ * 	-> Polyline (point sequence)
+ * 	-> Polygon (point sequence)
+ * 	-> Path ()
  * 	-> Text
 */
 
@@ -41,6 +41,9 @@ static void PrintHelp(void)
 	std::cout << "Lines: end points" << std::endl;
 	std::cout << "Rectangles: center, width and height" << std::endl;
 	std::cout << "Circles: center and radius" << std::endl;
+	std::cout << "Ellipses: center, width and height" << std::endl;
+	std::cout << "Polyline: point sequence" << std::endl;
+	std::cout << "Polygon: point sequence" << std::endl;
 }
 
 int main(int argc, char *argv[])
