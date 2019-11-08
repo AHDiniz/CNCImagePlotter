@@ -18,6 +18,7 @@ namespace Forms
 	struct Form
 	{
 		virtual const std::vector<Point> &Draw(void) = 0;
+		virtual void Print(void) = 0; // Debug only
 	};
 
 	struct Line : public Form
@@ -25,6 +26,7 @@ namespace Forms
 		Point a, b;
 
 		const std::vector<Point> &Draw(void) override;
+		void Print() override;
 	};
 
 	struct Rect : public Form
@@ -33,6 +35,7 @@ namespace Forms
 		float width, height;
 
 		const std::vector<Point> &Draw(void) override;
+		void Print() override;
 	};
 
 	struct Circle : public Form
@@ -41,6 +44,7 @@ namespace Forms
 		float radius;
 
 		const std::vector<Point> &Draw(void) override;
+		void Print() override;
 	};
 
 	struct Ellipse : public Form
@@ -49,6 +53,7 @@ namespace Forms
 		float width, height;
 
 		const std::vector<Point> &Draw(void) override;
+		void Print() override;
 	};
 
 	struct Polyline : public Form
@@ -56,6 +61,7 @@ namespace Forms
 		std::vector<Point> vertices;
 
 		const std::vector<Point> &Draw(void) override;
+		void Print() override;
 	};
 
 	struct Polygon : public Form
@@ -63,13 +69,15 @@ namespace Forms
 		std::vector<Point> vertices;
 
 		const std::vector<Point> &Draw(void) override;
+		void Print() override;
 	};
 
-	struct Text : public Form
-	{
-		const char *text;
-		float fontSize;
+	// struct Text : public Form
+	// {
+	// 	const char *text;
+	// 	float fontSize;
 
-		const std::vector<Point> &Draw(void) override;
-	};
+	// 	const std::vector<Point> &Draw(void) override;
+	// 	void Print() override;
+	// };
 }

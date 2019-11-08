@@ -1,6 +1,6 @@
 CC = g++
 CFLAGS = -O2 -Wall -Wextra -g
-LFLAGS = 
+LFLAGS = -ltinyxml
 INC = -Iinclude/
 SRC = $(wildcard src/*.cpp)
 EXE = bin/plotter

@@ -138,20 +138,20 @@ namespace Parser
 
 				result.push_back(p);
 			}
-			else if (strcmp(name, "text") == 0)
-			{
-				const char *text = e->GetText();
+			// else if (strcmp(name, "text") == 0)
+			// {
+			// 	const char *text = e->GetText();
 
-				float fontSize;
+			// 	float fontSize;
 
-				e->QueryFloatAttribute("font-size", &fontSize);
+			// 	e->QueryFloatAttribute("font-size", &fontSize);
 
-				Forms::Text *t = new Forms::Text();
-				t->fontSize = fontSize;
-				t->text = text;
+			// 	Forms::Text *t = new Forms::Text();
+			// 	t->fontSize = fontSize;
+			// 	t->text = text;
 
-				result.push_back(t);
-			}
+			// 	result.push_back(t);
+			// }
 		}
 
 		return result;

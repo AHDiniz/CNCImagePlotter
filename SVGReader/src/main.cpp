@@ -3,6 +3,7 @@
 #include <cstdlib>
 
 #include "config.hpp"
+#include "parser.hpp"
 
 /**
  * SVG File parser:
@@ -115,6 +116,12 @@ int main(int argc, char *argv[])
 
 	if (config->GetWidth() <= 0) config->SetWidth(80);
 	if (config->GetHeight() <= 0) config->SetHeight(60);
+
+	std::vector<Forms::Form*> forms = Parser::ReadSVGFile();
+	for (Forms::Form *f : forms)
+	{
+		f->Print();
+	}
 
 	return EXIT_SUCCESS;
 }
