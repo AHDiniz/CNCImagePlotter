@@ -8,13 +8,14 @@
 
 namespace Parser
 {
-	const std::vector<Forms::Form*> &ReadSVGFile()
+	const std::vector<Forms::Form*> ReadSVGFile()
 	{
 		std::vector<Forms::Form*> result;
 
 		Config *config = Config::GetInstance();
 
 		TiXmlDocument doc;
+
 		doc.LoadFile(config->GetFilename());
 
 		TiXmlElement *node = doc.FirstChildElement();
@@ -159,6 +160,13 @@ namespace Parser
 
 	const char *GCodeCreator(const std::vector<Forms::Form*> forms)
 	{
+		/**
+		 * GCode:
+		 * Set G21 to use milimeters
+		 * Use F to set feed rate
+		 * Speed data: G00 = max speed, G01 = feed rate speed
+		*/
+
 		return nullptr;
 	}
 }

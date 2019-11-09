@@ -25,8 +25,8 @@
  * 	-> Ellipses (center, width and height)
  * 	-> Polyline (point sequence)
  * 	-> Polygon (point sequence)
- * 	-> Path (???)
- * 	-> Text (???)
+ * 	-> Path (currently not supported)
+ * 	-> Text (currently not supported)
  * 
  * 1 - Read SVG file
  * 2 - Simplify data
@@ -96,6 +96,10 @@ int main(int argc, char *argv[])
 
 			int w = atoi(argv[i + 1]);
 			int h = atoi(argv[i + 2]);
+
+			config->SetHeight(h);
+			config->SetWidth(w);
+
 			i += 3;
 		}
 		else
@@ -118,10 +122,15 @@ int main(int argc, char *argv[])
 	if (config->GetHeight() <= 0) config->SetHeight(60);
 
 	std::vector<Forms::Form*> forms = Parser::ReadSVGFile();
-	for (Forms::Form *f : forms)
+	std::vector<Forms::Point> points;
+
+	for (auto form : forms)
 	{
-		f->Print();
+		auto drawPoints = form->Draw();
+		for (auto p : drawPoints) points.push_back(p);
 	}
+
+	for (auto p : points) std::cout << p.x << " " << p.y << std::endl;
 
 	return EXIT_SUCCESS;
 }

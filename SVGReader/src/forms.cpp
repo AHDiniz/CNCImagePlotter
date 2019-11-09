@@ -5,39 +5,12 @@
 
 namespace Forms
 {
-	const std::vector<Point> &Line::Draw(void)
+	const std::vector<Point> Line::Draw(void)
     {
         std::vector<Point> points;
 
-        float dx = b.x - a.x, dy = b.y - a.y;
-
-        if (dx == 0 && dy == 0)
-            points.push_back(a);
-        else if (dx == 0)
-        {
-            float iy = (dy > 0) ? 1 : -1;
-            for (Point current = a; current.y != b.y; current.y += 1)
-                points.push_back(current);
-        }
-        else if (dy == 0)
-        {
-            float ix = (dx > 0) ? 1 : -1;
-            for (Point current = a; current.x != b.x; current.x += ix)
-                points.push_back(current);
-        }
-        else
-        {
-            float adx = fabsf32(dx), ady = fabsf32(dy);
-            float deno = (adx < ady) ? adx : ady;
-            float ix = dx / deno;
-            float iy = dy / deno;
-            for (Point current = a; current.x != b.x && current.y != b.y;)
-            {
-                points.push_back(current);
-                current.x += ix;
-                current.y += iy;
-            }
-        }
+        points.push_back(a);
+        points.push_back(b);
 
         return points;
     }
@@ -47,7 +20,7 @@ namespace Forms
         std::cout << "Line: a = (" << a.x << ", " << a.y << "), b = (" << b.x << ", " << b.y << ")" << std::endl;
     }
 
-    const std::vector<Point> &Rect::Draw(void)
+    const std::vector<Point> Rect::Draw(void)
     {
         std::vector<Point> points;
 
@@ -92,10 +65,10 @@ namespace Forms
 
     void Rect::Print()
     {
-        std::cout << "Rect: center = (" << center.x << ", " << center.y << "), width = " << width << "height = " << height << std::endl;
+        std::cout << "Rect: center = (" << center.x << ", " << center.y << "), width = " << width << ", height = " << height << std::endl;
     }
 
-    const std::vector<Point> &Circle::Draw(void)
+    const std::vector<Point> Circle::Draw(void)
     {
         std::vector<Point> points;
 
@@ -113,7 +86,7 @@ namespace Forms
         std::cout << "Circle: center = (" << center.x << ", " << center.y << "), radius = " << radius << std::endl;
     }
 
-    const std::vector<Point> &Ellipse::Draw(void)
+    const std::vector<Point> Ellipse::Draw(void)
     {
         std::vector<Point> points;
 
@@ -128,10 +101,10 @@ namespace Forms
 
     void Ellipse::Print()
     {
-        std::cout << "Rect: center = (" << center.x << ", " << center.y << "), width = " << width << "height = " << height << std::endl;
+        std::cout << "Rect: center = (" << center.x << ", " << center.y << "), width = " << width << ", height = " << height << std::endl;
     }
 
-    const std::vector<Point> &Polyline::Draw(void)
+    const std::vector<Point> Polyline::Draw(void)
     {
         std::vector<Point> points;
 
@@ -154,7 +127,7 @@ namespace Forms
         std::cout << std::endl;
     }
 
-    const std::vector<Point> &Polygon::Draw(void)
+    const std::vector<Point> Polygon::Draw(void)
     {
         std::vector<Point> points;
 

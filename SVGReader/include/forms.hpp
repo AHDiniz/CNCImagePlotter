@@ -17,7 +17,7 @@ namespace Forms
 
 	struct Form
 	{
-		virtual const std::vector<Point> &Draw(void) = 0;
+		virtual const std::vector<Point> Draw(void) = 0;
 		virtual void Print(void) = 0; // Debug only
 	};
 
@@ -25,7 +25,7 @@ namespace Forms
 	{
 		Point a, b;
 
-		const std::vector<Point> &Draw(void) override;
+		const std::vector<Point> Draw(void) override;
 		void Print() override;
 	};
 
@@ -34,7 +34,7 @@ namespace Forms
 		Point center;
 		float width, height;
 
-		const std::vector<Point> &Draw(void) override;
+		const std::vector<Point> Draw(void) override;
 		void Print() override;
 	};
 
@@ -43,7 +43,7 @@ namespace Forms
 		Point center;
 		float radius;
 
-		const std::vector<Point> &Draw(void) override;
+		const std::vector<Point> Draw(void) override;
 		void Print() override;
 	};
 
@@ -52,7 +52,7 @@ namespace Forms
 		Point center;
 		float width, height;
 
-		const std::vector<Point> &Draw(void) override;
+		const std::vector<Point> Draw(void) override;
 		void Print() override;
 	};
 
@@ -60,7 +60,7 @@ namespace Forms
 	{
 		std::vector<Point> vertices;
 
-		const std::vector<Point> &Draw(void) override;
+		const std::vector<Point> Draw(void) override;
 		void Print() override;
 	};
 
@@ -68,7 +68,7 @@ namespace Forms
 	{
 		std::vector<Point> vertices;
 
-		const std::vector<Point> &Draw(void) override;
+		const std::vector<Point> Draw(void) override;
 		void Print() override;
 	};
 
@@ -77,7 +77,7 @@ namespace Forms
 	// 	const char *text;
 	// 	float fontSize;
 
-	// 	const std::vector<Point> &Draw(void) override;
+	// 	const std::vector<Point> Draw(void) override;
 	// 	void Print() override;
 	// };
 }

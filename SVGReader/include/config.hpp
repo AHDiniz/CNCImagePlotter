@@ -35,11 +35,11 @@ public:
 		this->height = height;
 	}
 
-	inline const std::string GetFilename() { return svgFilename; }
-	inline const std::string GetPort() { return arduinoPort; }
+	inline std::string GetFilename() const { return svgFilename; }
+	inline std::string GetPort() const { return arduinoPort; }
 
-	inline const int GetWidth() { return width; }
-	inline const int GetHeight() { return height; }
+	inline int GetWidth() const { return width; }
+	inline int GetHeight() const { return height; }
 
 private:
 	std::string svgFilename;

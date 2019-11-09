@@ -5,7 +5,7 @@
 
 namespace Parser
 {
-	const std::vector<Forms::Form*> &ReadSVGFile();
+	const std::vector<Forms::Form*> ReadSVGFile();
 
 	const char *GCodeCreator(const std::vector<Forms::Form*> forms);
 }
