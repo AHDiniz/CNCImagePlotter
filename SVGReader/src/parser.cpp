@@ -167,6 +167,56 @@ namespace Parser
 		 * Speed data: G00 = max speed, G01 = feed rate speed
 		*/
 
-		return nullptr;
+		std::stringstream stream;
+
+		Config *config = Config::GetInstance();
+
+		/* Initialization */ {
+
+			// Starting the program:
+			stream << "%" << std::endl; // GCode start
+			stream << "O100" << std::endl; // Program ID
+
+			// Program setup data:
+			stream << "G21 F" << config->GetFeedrate() << std::endl;
+			stream << "G00 Z5" << std::endl;
+			stream << "G00 X0 Y0" << std::endl;
+		}
+
+		/* Drawing each form */ {
+
+			// Getting plotter coordinate system:
+			float width = config->GetWidth() / 2;
+			float height = config->GetHeight() / 2;
+
+			for (auto f : forms)
+			{
+				std::vector<Forms::Point> points = f->Draw();
+
+				// Going to the first point:
+				stream << "G00 " << std::endl;
+				stream << "X" << points[0].x - width << " Y" << points[0].y - height << std::endl;
+
+				stream << "Z0" << std::endl;
+				stream << "G01" << std::endl;
+				// Drawing the other points:
+				for (int i = 1; i < points.size(); ++i)
+				{
+					stream << "X" << points[i].x - width << " Y" << points[i].y - height << std::endl;
+				}
+				stream << "G00 Z5" << std::endl;
+			}
+		}
+
+		/* Finalization */ {
+
+			stream << "G00 X0Y0" << std::endl;
+			stream << "%" << std::endl;
+		}
+
+		std::string gCode = stream.str();
+		const char *result = strdup(gCode.c_str());
+
+		return result;
 	}
 }

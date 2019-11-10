@@ -42,6 +42,7 @@ static void PrintHelp(void)
 	std::cout << "-f to tell the file location" << std::endl;
 	std::cout << "-p to specify the serial port where the arduino is connected (default is 'Put default here')" << std::endl;
 	std::cout << "-d to specify the dimensions of the plot in milimeters (default is 80 60)" << std::endl;
+	std::cout << "-fr to specify the plotter's feed rate" << std::endl;
 	std::cout << "-h to display this help message" << std::endl << std::endl;
 
 	std::cout << "Supported geometries:" << std::endl;
@@ -102,6 +103,18 @@ int main(int argc, char *argv[])
 
 			i += 3;
 		}
+		else if (strcmp(argv[i], "-fr") == 0)
+		{
+			if (i + 1 >= argc)
+			{
+				std::cout << "Unspecified input. Type 'plotter -h' to get help." << std::endl;
+				return EXIT_SUCCESS;
+			}
+
+			float feedrate = atof(argv[i + 1]);
+
+			config->SetFeedrate(feedrate);
+		}
 		else
 		{
 			std::cout << "Unspecified input. Type 'plotter -h' to get help." << std::endl;
@@ -118,19 +131,11 @@ int main(int argc, char *argv[])
 	if (config->GetPort().empty())
 		config->SetPort("TODO: Default serial port.");
 
-	if (config->GetWidth() <= 0) config->SetWidth(80);
-	if (config->GetHeight() <= 0) config->SetHeight(60);
-
 	std::vector<Forms::Form*> forms = Parser::ReadSVGFile();
-	std::vector<Forms::Point> points;
 
-	for (auto form : forms)
-	{
-		auto drawPoints = form->Draw();
-		for (auto p : drawPoints) points.push_back(p);
-	}
+	const char *gCode = Parser::GCodeCreator(forms);
 
-	for (auto p : points) std::cout << p.x << " " << p.y << std::endl;
+	std::cout << gCode << std::endl;
 
 	return EXIT_SUCCESS;
 }

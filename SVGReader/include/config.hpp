@@ -35,14 +35,22 @@ public:
 		this->height = height;
 	}
 
+	inline void SetFeedrate(const float feedrate)
+	{
+		this->feedrate = feedrate;
+	}
+
 	inline std::string GetFilename() const { return svgFilename; }
 	inline std::string GetPort() const { return arduinoPort; }
 
 	inline int GetWidth() const { return width; }
 	inline int GetHeight() const { return height; }
 
+	inline float GetFeedrate() const { return feedrate; }
+
 private:
 	std::string svgFilename;
 	std::string arduinoPort;
-	int width = 0, height = 0;
+	int width = 80, height = 60;
+	float feedrate = 18.3f;
 };
