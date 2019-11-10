@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <svg width="80" height="60">
-	<line x1="0" y1="0" x2="80" y2="60" />
-	<rect width="10" height="10" />
 	<circle cx="40" cy="40" r="3" />
 	<ellipse rx="5" ry="3" cx="22" cy="12" />
-	<polygon points="50 50 30 50 30 40" />
-	<polyline points="10 20 30 50 10 60" />
 </svg>

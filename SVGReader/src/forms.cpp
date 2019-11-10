@@ -74,7 +74,8 @@ namespace Forms
 
         for (float angle = 0; angle <= 360; ++angle)
         {
-            Point p = {center.x + (radius * cosf(angle)), center.y + (radius * sinf(angle))};
+            float rad = M_PI * angle / 90; 
+            Point p = {center.x + (radius * cosf(rad)), center.y + (radius * sinf(rad))};
             points.push_back(p);
         }
 
@@ -92,7 +93,8 @@ namespace Forms
 
         for (float angle = 0; angle <= 360; ++angle)
         {
-            Point p = {center.x + (width * cosf(angle)), center.y + (height * sinf(angle))};
+            float rad = M_PI * angle / 90; 
+            Point p = {center.x + (width * cosf(rad)), center.y + (height * sinf(rad))};
             points.push_back(p);
         }
 
