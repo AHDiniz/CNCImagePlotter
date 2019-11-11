@@ -26,8 +26,8 @@ namespace Forms
 
         /* Top points */ {
 
-            Point a = {center.x - width / 2, center.y + height / 2};
-            Point b = {center.x + width / 2, center.y + height / 2};
+            Point a = {center.x, center.y + height};
+            Point b = {center.x + width, center.y + height};
             Line l;
             l.a = a; l.b = b;
             for (Point p : l.Draw()) points.push_back(p);
@@ -35,8 +35,8 @@ namespace Forms
 
         /* Right points */ {
 
-            Point a = {center.x + width / 2, center.y - height / 2};
-            Point b = {center.x + width / 2, center.y + height / 2};
+            Point a = {center.x + width, center.y};
+            Point b = {center.x + width, center.y + height};
             Line l;
             l.a = a; l.b = b;
             for (Point p : l.Draw()) points.push_back(p);
@@ -44,8 +44,8 @@ namespace Forms
 
         /* Bottom points */ {
 
-            Point a = {center.x + width / 2, center.y - height / 2};
-            Point b = {center.x - width / 2, center.y - height / 2};
+            Point a = {center.x + width, center.y};
+            Point b = {center.x, center.y};
             Line l;
             l.a = a; l.b = b;
             for (Point p : l.Draw()) points.push_back(p);
@@ -53,8 +53,8 @@ namespace Forms
 
         /* Left points */ {
 
-            Point a = {center.x - width / 2, center.y - height / 2};
-            Point b = {center.x - width / 2, center.y + height / 2};
+            Point a = {center.x, center.y};
+            Point b = {center.x, center.y + height};
             Line l;
             l.a = a; l.b = b;
             for (Point p : l.Draw()) points.push_back(p);
