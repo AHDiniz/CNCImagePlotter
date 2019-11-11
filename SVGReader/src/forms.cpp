@@ -72,7 +72,7 @@ namespace Forms
     {
         std::vector<Point> points;
 
-        for (float angle = 0; angle <= 360; ++angle)
+        for (float angle = 0; angle <= 180; ++angle)
         {
             float rad = M_PI * angle / 90; 
             Point p = {center.x + (radius * cosf(rad)), center.y + (radius * sinf(rad))};
@@ -91,7 +91,7 @@ namespace Forms
     {
         std::vector<Point> points;
 
-        for (float angle = 0; angle <= 360; ++angle)
+        for (float angle = 0; angle <= 180; ++angle)
         {
             float rad = M_PI * angle / 90; 
             Point p = {center.x + (width * cosf(rad)), center.y + (height * sinf(rad))};
